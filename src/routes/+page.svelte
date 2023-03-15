@@ -4,15 +4,13 @@
     let result = null;
     
     export let data: PageData;
-    let weights;
+    let weights: any[] = [];
+
     if (data.status == "SUCCESS") {
         weights = data.data
     }
-    console.log(data)
-    console.log(weights)
 
     async function handleSubmit(): Promise<number> {
-        // console.log(JSON.stringify(params))
         const response = await fetch('http://127.0.0.1:3000/api/v1/weights', {
             method: 'POST',
             mode: 'cors',
@@ -24,7 +22,6 @@
         
         const json = await response.json();
         result = JSON.stringify(json);
-        console.log('resultttt', result)
         return amount
     }
 </script>

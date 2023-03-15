@@ -1,7 +1,15 @@
 <script lang="ts">
-    
+    import type { PageData } from './$types';
     let amount: number;
     let result = null;
+    
+    export let data: PageData;
+    let weights;
+    if (data.status == "SUCCESS") {
+        weights = data.data
+    }
+    console.log(data)
+    console.log(weights)
 
     async function handleSubmit(): Promise<number> {
         // console.log(JSON.stringify(params))
@@ -22,7 +30,7 @@
 </script>
 
 <main class="container is-desktop">
-    <h1 class="title2">Welcome to MikeyLosesBuddha</h1>
+    <h1 class="title is-5 mt-4">Welcome to MikeyLosesBuddha</h1>
     <div class="box">
         <div class="field">
             <label class="label" for="weight">Weight</label>
@@ -37,6 +45,22 @@
             </div>
         </div>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#each weights as weight}
+                <tr>
+                    <td>{weight.created_at.split('T')[0]}</td>
+                    <td>{weight.amount}</td>
+                </tr>
+            {/each}
+        </tbody>
+    </table>
     <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 </main>
 

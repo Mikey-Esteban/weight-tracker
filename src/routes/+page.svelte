@@ -3,12 +3,12 @@
     let amount: number;
     let result = null;
     
-    export let data: PageData;
+    // export let data: PageData;
     let weights: any[] = [];
 
-    if (data.status == "SUCCESS") {
-        weights = data.data
-    }
+    // if (data.status == "SUCCESS") {
+    //     weights = data.data
+    // }
 
     async function handleSubmit(): Promise<number> {
         const response = await fetch('http://127.0.0.1:3000/api/v1/weights', {
